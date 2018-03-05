@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:ws="http://jax-ws.dev.java.net/spring/core" xmlns:wss="http://jax-ws.dev.java.net/spring/servlet"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans  
+                   http://www.springframework.org/schema/beans/spring-beans.xsd
+                   http://www.springframework.org/schema/context 
+                   http://www.springframework.org/schema/context/spring-context-4.3.xsd
+                   http://www.springframework.org/schema/tx
+                   http://www.springframework.org/schema/tx/spring-tx-4.3.xsd
+                   http://jax-ws.dev.java.net/spring/core
+                   http://jax-ws.dev.java.net/spring/core.xsd
+                   http://jax-ws.dev.java.net/spring/servlet
+                   http://jax-ws.dev.java.net/spring/servlet.xsd">
+
+	<context:annotation-config />
+	<context:component-scan base-package="com.jm.utilityservices" />
+
+	<context:property-placeholder location="classpath:utilityservices.properties" />
+
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<!-- <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" 
+			destroy-method="close"> -->
+		<property name="driverClassName" value="${jdbc.driver}" />
+		<property name="url" value="${jdbc.url}" />
+		<property name="username" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
+	</bean>
+
+
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="annotatedClasses">
+			<list>
+				<value>com.jm.cms.entities.Country</value>
+			</list>
+		</property>
+		<!-- <property name="configLocation"> <value>classpath:hibernate.cfg.xml</value> 
+			</property> -->
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.format_sql">true</prop>
+			</props>
+		</property>
+	</bean>
+	
+		<bean id="countryService" class="com.jm.utilityservices.services.CountryService">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<!-- Web Services -->
+<!-- 
+	<wss:binding url="/hello">
+		<wss:service>
+			<ws:service bean="#helloWs" />
+		</wss:service>
+	</wss:binding>
+	
+	<wss:binding url="/country">
+		<wss:service>
+			<ws:service bean="#countryWs" />
+		</wss:service>
+	</wss:binding>
+
+	<bean id="countryWs" class="com.jm.cms.webservices.Country">
+		<property name="countryService" ref="countryService" />
+	</bean>
+
+	<bean id="helloWs" class="com.jm.cms.webservices.Hello">
+	</bean>
+ -->
+
+	<tx:annotation-driven transaction-manager="transactionManager" />
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+</beans>  

@@ -1,0 +1,104 @@
+
+<div class="col-xs-8 col-xs-offset-2">
+	<h3>Register</h3>
+
+	<div ng-show="error" class="alert alert-danger">{{error}}</div>
+	<img ng-if="dataLoading"
+		src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+	<div ng-show="!dataLoading && !error">
+		<form name="registerationForm" ng-submit="register()" role="form">
+
+			<div>
+				<div class="alert alert-info">
+					<strong>Registeration Form</strong>
+				</div>
+				<div class="form-group row">
+					<div class="col-xs-4">
+						<label for="text">*Username (email id):</label> <input type="text"
+							class="form-control" id="registerDetails.emailId"
+							ng-model="registerDetails.emailId">
+					</div>
+					<div class="col-xs-4">
+						<label for="text">*Password:</label> <input type="password"
+							class="form-control" id="registerDetails.password"
+							ng-model="registerDetails.password">
+					</div>
+				</div>
+				<div class="form-group row">
+					<div class="col-xs-4">
+						<label for="text">First Name* :</label> <input type="text"
+							class="form-control" id="registerDetails.firstName"
+							ng-model="registerDetails.firstName">
+					</div>
+					<div class="col-xs-4">
+						<label for="text">Middle Name:</label> <input type="text"
+							class="form-control" id="registerDetails.middleName"
+							ng-model="registerDetails.middleName">
+					</div>
+				</div>
+				<div class="form-group row">
+					<div class="col-xs-4">
+						<label for="text">Last Name*:</label> <input type="text"
+							class="form-control" id="registerDetails.lastName"
+							ng-model="registerDetails.lastName">
+					</div>
+				</div>
+				<div class="form-group row">
+					<div class="col-xs-4">
+						<label for="text">Date of Birth:*</label> <input type="text"
+							class="form-control" id="registerDetails.dob"
+							ng-model="registerDetails.dob">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="text">Address Line 1:*</label> <input type="text"
+						class="form-control" id="registerDetails.address1"
+						ng-model="registerDetails.address1">
+				</div>
+				<div class="form-group">
+					<label for="text">Address Line 2:</label> <input type="text"
+						class="form-control" id="registerDetails.address2"
+						ng-model="registerDetails.address2">
+				</div>
+				<div class="form-group row">
+					<div class="col-xs-4">
+						<label for="text">City:*</label> <input type="text"
+							class="form-control" id="registerDetails.city"
+							ng-model="registerDetails.city">
+					</div>
+					<div class="col-xs-4">
+						<label for="text">State:*</label> <input type="text"
+							class="form-control" id="registerDetails.state"
+							ng-model="registerDetails.state">
+					</div>
+				</div>
+				<div class="form-group row">
+					<div class="col-xs-4">
+						<label for="text">Country:*</label> <input type="text"
+							class="form-control" id="registerDetails.country"
+							ng-model="registerDetails.country">
+					</div>
+				</div>
+
+				<div class="form-group row">
+					<div class="col-xs-4">
+						<label for="text">Mobile:*</label> <input type="text"
+							class="form-control" id="registerDetails.phone"
+							ng-model="registerDetails.phone">
+					</div>
+					<div class="col-xs-4">
+						<label for="text">Phone:</label> <input type="text"
+							class="form-control" id="registerDetails.mobile"
+							ng-model="registerDetails.mobile">
+					</div>
+				</div>
+			</div>
+
+			<button type="submit" ng-disabled="dataLoading"
+				class="btn btn-success">Submit</button>
+			<img ng-if="submitInProcess"
+				src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+			<br> <a href="#login">Back to Login Page</a>
+		</form>
+	</div>
+</div>

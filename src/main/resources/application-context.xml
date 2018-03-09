@@ -14,10 +14,12 @@
                    http://jax-ws.dev.java.net/spring/servlet
                    http://jax-ws.dev.java.net/spring/servlet.xsd">
 
+	<import resource="classpath:security-config.xml" />
+	
 	<context:annotation-config />
-	<context:component-scan base-package="com.jm.utilityservices" />
+	<context:component-scan base-package="com.jm.cms" />
 
-	<context:property-placeholder location="classpath:utilityservices.properties" />
+	<context:property-placeholder location="classpath:cms.properties" />
 
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
@@ -36,6 +38,11 @@
 		<property name="annotatedClasses">
 			<list>
 				<value>com.jm.cms.entities.Country</value>
+				<value>com.jm.cms.entities.Product</value>
+				<value>com.jm.cms.entities.CmsAccount</value>
+				<value>com.jm.cms.entities.CmsUser</value>
+				<value>com.jm.cms.entities.Permission</value>
+				<value>com.jm.cms.entities.Role</value>
 			</list>
 		</property>
 		<!-- <property name="configLocation"> <value>classpath:hibernate.cfg.xml</value> 
@@ -49,9 +56,14 @@
 		</property>
 	</bean>
 	
-		<bean id="countryService" class="com.jm.utilityservices.services.CountryService">
+	<bean id="countryService" class="com.jm.cms.services.CountryService">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>	
+	<!-- 
+	<bean id="productService" class="com.jm.cms.services.ProductService">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
+	 -->
 	
 	<!-- Web Services -->
 <!-- 
@@ -71,8 +83,6 @@
 		<property name="countryService" ref="countryService" />
 	</bean>
 
-	<bean id="helloWs" class="com.jm.cms.webservices.Hello">
-	</bean>
  -->
 
 	<tx:annotation-driven transaction-manager="transactionManager" />

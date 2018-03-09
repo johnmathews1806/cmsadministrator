@@ -3,11 +3,11 @@
   xmlns="http://java.sun.com/xml/ns/jax-ws/ri/runtime"
   version="2.0">
   <endpoint
-      name="HelloWs"      
-      implementation="com.jm.cms.webservices.Hello"
-      url-pattern="/hello"/>
-  <endpoint
       name="CountryWs"      
       implementation="com.jm.cms.webservices.Country"
-      url-pattern="/country"/>
+      url-pattern="/cms/country"/>
+  <endpoint
+      name="ProductWs"      
+      implementation="com.jm.cms.webservices.Product"
+      url-pattern="/cms/product"/>
 </endpoints>

@@ -1,4 +1,4 @@
-package com.jm.shoppingcart.entities;
+package com.jm.cms.entities;
 
 import java.math.BigDecimal;
 import java.util.Collection;
@@ -15,7 +15,7 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
-@Table(name = "PRODUCTS")
+@Table(name = "CMS_PRODUCTS")
 public class Product implements java.io.Serializable{
 	private static final long serialVersionUID = 1L;
 	
@@ -24,8 +24,6 @@ public class Product implements java.io.Serializable{
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int productId;
 	
-	@OneToMany(mappedBy="product")
-	private Collection<OrderDetail> orderDetails;
 	
 	@Column(name = "PRODUCT_CODE")
 	private String productCode;

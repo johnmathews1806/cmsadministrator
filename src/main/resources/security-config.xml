@@ -1,0 +1,103 @@
+
+<b:beans xmlns="http://www.springframework.org/schema/security"
+	xmlns:context="http://www.springframework.org/schema/context" 
+	xmlns:b="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+						http://www.springframework.org/schema/beans/spring-beans.xsd
+						http://www.springframework.org/schema/security 
+						http://www.springframework.org/schema/security/spring-security.xsd
+						http://www.springframework.org/schema/context 
+						http://www.springframework.org/schema/context/spring-context.xsd">
+
+
+
+	<context:annotation-config />
+
+	<global-method-security pre-post-annotations="enabled">
+		<expression-handler ref="expressionHandler" />
+	</global-method-security>
+	
+
+	<http entry-point-ref="restAuthenticationEntryPoint"
+		use-expressions="true">
+
+		<intercept-url pattern="/test.jsp" access="permitAll" />
+		<intercept-url pattern="/cms/**" access="permitAll" />
+		<intercept-url pattern="/index.html" access="permitAll" />
+		<intercept-url pattern="/app.html" access="permitAll" />
+		<intercept-url pattern="/scripts/**" access="permitAll" />
+		<intercept-url pattern="/login/**" access="permitAll" />
+		<intercept-url pattern="/home/**" access="permitAll" />
+		<intercept-url pattern="/products/**" access="permitAll" />
+		<intercept-url pattern="/orders/**" access="permitAll" />
+		<intercept-url pattern="/profile/**" access="permitAll" />
+		<intercept-url pattern="/register/**" access="permitAll" />
+		<intercept-url pattern="/login" access="permitAll" />
+		<intercept-url pattern="/register" access="permitAll" />
+		
+		<!--<intercept-url pattern="/logout" access="permitAll" /> -->
+
+		<!-- <intercept-url pattern="/secure/getOrders/**" access="hasRole('ROLE_ADMIN')" 
+			/> <intercept-url pattern="/secure/getContactDetails/**" access="hasRole('ROLE_USER')" 
+			/> -->
+		<!-- <intercept-url pattern="/secure/getProducts/**" access="hasRole('ROLE_ADMIN')" 
+			/> -->
+
+		<intercept-url pattern="/**" access="authenticated" />
+
+		<access-denied-handler ref="restAccessDeniedHandler" />
+
+		<form-login login-page="/login" login-processing-url="/login"
+			username-parameter="username" password-parameter="password"
+			authentication-success-handler-ref="restAuthenticationSuccessHandler"
+			authentication-failure-handler-ref="restAuthenticationFailureHandler" />
+		<csrf disabled="true" />
+
+		<logout logout-url="/logout" invalidate-session="true"
+			success-handler-ref="cartLogoutHandler" delete-cookies="JSESSIONID" />
+
+
+		<!-- <session-management session-fixation-protection="none"> <concurrency-control 
+			max-sessions="1" error-if-maximum-exceeded="true"/> <concurrency-control 
+			max-sessions="1" /> </session-management> -->
+	</http>
+
+	<authentication-manager>
+		<authentication-provider ref="cartAuthenticationProvider">
+
+		</authentication-provider>
+	</authentication-manager>
+
+	<!-- <b:bean id="cartLogoutHandler" class="com.jm.cms.security.CartLogoutHandler"></b:bean> -->
+	<!-- <b:bean id ="cartLogoutHandler" class="org.springframework.security.web.authentication.logout.HttpStatusReturningLogoutSuccessHandler"></b:bean> -->
+
+	<b:bean id="restAccessDeniedHandler"
+		class="com.jm.cms.security.RestAccessDeniedHandler"></b:bean>
+
+	<b:bean id="restAuthenticationFailureHandler"
+		class="com.jm.cms.security.RestAuthenticationFailureHandler"></b:bean>
+
+	<b:bean id="restAuthenticationSuccessHandler"
+		class="com.jm.cms.security.RestAuthenticationSuccessHandler"></b:bean>
+
+	<b:bean id="restAuthenticationEntryPoint"
+		class="com.jm.cms.security.RestUnauthorizedEntryPoint"></b:bean>
+
+	<!-- <b:bean id ="cartAuthenticationProvider" class="com.jm.cms.security.CartAuthenticationProvider"></b:bean> -->
+
+	<b:bean id="expressionHandler"
+		class="org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler">
+		<b:property name="permissionEvaluator" ref="customPermissionEvaluator" />
+	</b:bean>
+
+	<b:bean id="customPermissionEvaluator"
+		class="com.jm.cms.security.CustomPermissionEvaluator"></b:bean>
+
+	<b:alias name="customPermissionEvaluator" alias="evaluator" />
+	
+	<b:bean id="passwordEncoder"
+		class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"></b:bean>
+
+</b:beans>
+

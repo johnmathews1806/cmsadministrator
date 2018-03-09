@@ -11,15 +11,15 @@ import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.jm.cms.entities.Country;
+import com.jm.cms.entities.Product;
 
-
-//@Service
-public class CountryService {
+@Service
+public class ProductService {
 	
 	private SessionFactory sessionFactory;
 	
@@ -29,17 +29,27 @@ public class CountryService {
     }
 	
 	//@Transactional
-	public List<String> getCountries(){
-		System.out.println("in getCountries service");
+	public List<Product> getProducts(){
 		//Session session=sessionFactory.getCurrentSession();
 		Session session=sessionFactory.openSession();
 
-		Query query= session.createQuery("Select countryName FROM Country");	
+		Query query= session.createQuery("FROM Product");	
 		
-		List countries =query.list();
+		List prod =query.list();  
 		
-		session.close();
-		
-		return countries;
+		return prod;
 	}
+	
+	//@Transactional
+	public Product getProduct(int productId){
+		Session session=sessionFactory.getCurrentSession();
+
+		Query query= session.createQuery("FROM Product p where p.productId=:productId");
+		query.setParameter("productId", productId);
+		
+		Product prod =(Product)query.uniqueResult();	  
+		
+		return prod;
+	}
+
 }

@@ -1,12 +1,20 @@
 //Module declaration
 angular.module('Authentication', []);
 angular.module('Home', []);
+angular.module('CustSetup', ['ngRoute']);
+angular.module('CustSearch', ['ngRoute']);
+angular.module('ProdSearch', ['ngRoute']);
+angular.module('TranSearch', ['ngRoute']);
 angular.module('Logout', []);
 var app = angular.module('cms',[
 										'ngRoute',
 										'ngCookies',
 										'Authentication',		
-										'Home',										
+										'Home',				
+										'CustSetup',
+										'CustSearch',
+										'ProdSearch',
+										'TranSearch',
 										'Logout'
 										]);
 
@@ -16,20 +24,25 @@ app.config(function($routeProvider) {
         templateUrl : 'home/home.html',
         controller : "homeCtrl"
     })
-    .when("/products", {
-        templateUrl : 'products/products.html',
-        controller : "productsCtrl"
+    .when("/prodsearch", {
+        templateUrl : 'productsearch/prodsearch.html',
+        controller : "prodSearchCtrl"
     })
     .when("/orders", {
         templateUrl : 'orders/orders.html',
         controller : "ordersCtrl"
     })
-    .when("/profile", {
-        templateUrl : 'profile/profile.html',
-        controller : "profileCtrl"
+    .when("/custsetup", {
+        templateUrl : 'customersetup/custsetup.html',
+        controller : "custSetupCtrl"
     })
-    .when("/menu4", {
-        templateUrl : 'menu4/menu4.html'
+    .when("/custsearch", {
+        templateUrl : 'customersearch/custsearch.html',
+        controller : "custSearchCtrl"
+    })
+    .when("/transearch", {
+        templateUrl : 'transactionsearch/transearch.html',
+        controller : "tranSearchCtrl"
     })
     .when("/menu5", {
         templateUrl : 'menu5/menu5.html'
@@ -45,7 +58,8 @@ app.config(function($routeProvider) {
     
 })
 .run(['$rootScope', '$location', '$cookieStore', '$http','$window',
-    function ($rootScope, $location, $cookieStore, $http, $window) {		
+    function ($rootScope, $location, $cookieStore, $http, $window) {
+		$rootScope.port=7001; //application port setting
         // keep user logged in after page refresh		
         //$rootScope.globals = $cookieStore.get('globals1') || {}; //COOKIE
         //$rootScope.globals = angular.fromJson($window.localStorage.getItem('globals1')) || {}; //LOCALSTORAGE

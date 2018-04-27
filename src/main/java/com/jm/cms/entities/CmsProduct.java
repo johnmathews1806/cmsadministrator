@@ -16,7 +16,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 @Table(name = "CMS_PRODUCTS")
-public class Product implements java.io.Serializable{
+public class CmsProduct implements java.io.Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@Id
@@ -55,6 +55,9 @@ public class Product implements java.io.Serializable{
 	@Column(name = "LAUNCH_DATE")
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
 	private Date launchDate;
+	
+	@Column(name = "QUANTITY")
+	private int quantity;
 	
 	
 	public int getProductId() {
@@ -139,6 +142,14 @@ public class Product implements java.io.Serializable{
 
 	public void setLaunchDate(Date launchDate) {
 		this.launchDate = launchDate;
+	}
+
+	public int getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
 	}	
 	
 }

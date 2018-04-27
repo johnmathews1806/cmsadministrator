@@ -32,7 +32,7 @@ public class CmsAccount implements java.io.Serializable{
 	private int accountId;
 	
 	@Column(name = "ACCOUNT_NUMBER")	
-	private int accountNumber;	
+	private long accountNumber;	
 
 	@Column(name = "ACCOUNT_BALANCE")
 	private BigDecimal accountBalance;
@@ -48,6 +48,12 @@ public class CmsAccount implements java.io.Serializable{
 
 	@Column(name = "DOB")
 	private Date dob;
+	
+	@Column(name = "STATUS")
+	private String status;
+	
+	@Column(name = "PIN")
+	private int pin;
 
 	@Column(name = "CREATE_DATE")
 	private Date createDate;
@@ -60,6 +66,111 @@ public class CmsAccount implements java.io.Serializable{
 
 	@Column(name = "UPDATE_USER")
 	private String updateUser;
+
+	public int getAccountId() {
+		return accountId;
+	}
+
+
+	public long getAccountNumber() {
+		return accountNumber;
+	}
+
+	public void setAccountNumber(long accountNumber) {
+		this.accountNumber = accountNumber;
+	}
+
+	public BigDecimal getAccountBalance() {
+		return accountBalance;
+	}
+
+	public void setAccountBalance(BigDecimal accountBalance) {
+		this.accountBalance = accountBalance;
+	}
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getMiddleName() {
+		return middleName;
+	}
+
+	public void setMiddleName(String middleName) {
+		this.middleName = middleName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public Date getDob() {
+		return dob;
+	}
+
+	public void setDob(Date dob) {
+		this.dob = dob;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+
+	public int getPin() {
+		return pin;
+	}
+
+
+	public void setPin(int pin) {
+		this.pin = pin;
+	}
+
+
+	public Date getCreateDate() {
+		return createDate;
+	}
+
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
+	}
+
+	public String getCreateuser() {
+		return createuser;
+	}
+
+	public void setCreateuser(String createuser) {
+		this.createuser = createuser;
+	}
+
+	public Date getUpdateDate() {
+		return updateDate;
+	}
+
+	public void setUpdateDate(Date updateDate) {
+		this.updateDate = updateDate;
+	}
+
+	public String getUpdateUser() {
+		return updateUser;
+	}
+
+	public void setUpdateUser(String updateUser) {
+		this.updateUser = updateUser;
+	}
 
 	
 }

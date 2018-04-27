@@ -15,6 +15,7 @@
                    http://jax-ws.dev.java.net/spring/servlet.xsd">
 
 	<import resource="classpath:security-config.xml" />
+	<import resource="classpath:jms-config.xml" />
 	
 	<context:annotation-config />
 	<context:component-scan base-package="com.jm.cms" />
@@ -37,12 +38,13 @@
 		<property name="dataSource" ref="dataSource" />
 		<property name="annotatedClasses">
 			<list>
-				<value>com.jm.cms.entities.Country</value>
-				<value>com.jm.cms.entities.Product</value>
+				<value>com.jm.cms.entities.Country</value>				
 				<value>com.jm.cms.entities.CmsAccount</value>
 				<value>com.jm.cms.entities.CmsUser</value>
 				<value>com.jm.cms.entities.Permission</value>
 				<value>com.jm.cms.entities.Role</value>
+				<value>com.jm.cms.entities.CmsProduct</value>
+				<value>com.jm.cms.entities.CmsTransaction</value>
 			</list>
 		</property>
 		<!-- <property name="configLocation"> <value>classpath:hibernate.cfg.xml</value> 
@@ -64,6 +66,8 @@
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	 -->
+	 <bean id="customerService" class="com.jm.cms.services.CustomerService"></bean>
+	 
 	
 	<!-- Web Services -->
 <!-- 

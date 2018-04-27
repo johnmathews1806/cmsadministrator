@@ -51,11 +51,12 @@
 	<div class="w3-sidebar w3-bar-block w3-collapse w3-card-2"
 		style="width: 200px;" id="mySidebar">
 		<a href="#home" class="w3-bar-item w3-button" onclick="w3_close()">Home</a>
-		<a href="#products" class="w3-bar-item w3-button" onclick="w3_close()">View Products</a>
+		<a href="#prodsearch" class="w3-bar-item w3-button" onclick="w3_close()">Product Search</a>
 		<a href="#orders" class="w3-bar-item w3-button" onclick="w3_close()">Manage	Products</a>		
-		<a href="#menu4" class="w3-bar-item w3-button" onclick="w3_close()">View Transactions</a> 
+		<a href="#transearch" class="w3-bar-item w3-button" onclick="w3_close()">View Transactions</a> 
 		<a href="#menu5" class="w3-bar-item w3-button" onclick="w3_close()">Upload Products</a>
-		<a href="#profile" class="w3-bar-item w3-button" onclick="w3_close()">Manage Profile</a> 
+		<a href="#custsetup" class="w3-bar-item w3-button" onclick="w3_close()">Customer Setup</a> 
+		<a href="#custsearch" class="w3-bar-item w3-button" onclick="w3_close()">Customer Search</a>
 	</div>
 
 	<div class="w3-main" style="margin-left: 200px">
@@ -82,8 +83,10 @@
 	<script src="scripts/cms.js"></script>
 	<script src="login/login.service.js"></script>
 	<script src="home/home.controller.js"></script>
-	<!-- <script src="products/products.controller.js"></script>
-	<script src="profile/profile.controller.js"></script> -->	
+	<script src="productsearch/prodsearch.controller.js"></script>
+	<script src="transactionsearch/transearch.controller.js"></script>
+	<script src="customersetup/custsetup.controller.js"></script> 	
+	<script src="customersearch/custsearch.controller.js"></script>
 	<script src="logout/logout.controller.js"></script>	
 	<script>
 		function w3_open() {

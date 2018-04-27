@@ -1,15 +1,15 @@
 angular.module('Register')
-.controller('registerCtrl', function($scope,$rootScope,$http,$route) {	
+.controller('registerCtrl', function($scope,$rootScope,$http,$route,$location) {	
 	
 	//$scope.dataLoading = true;
 	$scope.error=false;
 	$scope.register = function(){				
 		alert("contacts: "+JSON.stringify($scope.registerDetails));
 		$scope.submitInProcess = true;
-		$http.post("http://localhost:9000/shoppingcart/register/", $scope.registerDetails)
+		$http.post("http://localhost:9000/cmsadministrator/register/", $scope.registerDetails)
 			.then(function(response){
 				$scope.submitInProcess = false;
-				//alert("success"+response.status);
+				alert("success"+response.status);
 				$location.path('/login');							  	
 			}, 
 			function(response){

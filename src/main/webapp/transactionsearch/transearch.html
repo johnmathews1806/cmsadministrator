@@ -1,0 +1,36 @@
+<h4>Transaction Search</h4>
+
+<div ng-show="error" class="alert alert-danger">{{error}}</div>
+<img ng-if="dataLoading"
+	src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+<div ng-show="!dataLoading && !error">
+	<form name="searchForm" ng-submit="searchTransaction()" role="form">
+First Name:	<input type="text" ng-model="firstName" />
+Middle Name:	<input type="text" ng-model="middleName"/>
+Last Name:	<input type="text" ng-model="lastName"/>
+		<button type="submit" ng-disabled="dataLoading"
+			class="btn btn-success">Search</button>
+			
+		<table class="table table-striped" ng-show="transactions">
+			<thead>
+				<tr>					
+					<th>Transaction Reference No</th>
+					<th>Product Code</th>
+					<th>Amount</th>
+					<th>Account No</th>
+					<th>Transaction date</th>					
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="transaction in transactions">					
+					<td>{{transaction.referenceNo}}</td>
+					<td>{{transaction.productCode}}</td>
+					<td>{{transaction.amount}}</td>
+					<td>{{transaction.accountNumber}}</td>
+					<td>{{transaction.tranDate}}</td>					
+				</tr>
+			</tbody>
+		</table>
+
+	</form>
+</div>

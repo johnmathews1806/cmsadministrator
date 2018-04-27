@@ -16,6 +16,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
+import com.jm.cms.entities.CmsProduct;
 import com.jm.cms.services.CountryService;
 import com.jm.cms.services.ProductService;
 
@@ -30,7 +31,7 @@ public class Product extends SpringBeanAutowiringSupport{
 	
 	
 	@WebMethod
-    public List<com.jm.cms.entities.Product> getProducts() {	
+    public List<CmsProduct> getProducts() {	
 		System.out.println("in getProducts WS - productService: "+productService);
         return productService.getProducts();
     }
